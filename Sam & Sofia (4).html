@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sam &amp; Sofia</title>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--red:#6b0f0a;--ink:#4a1512;--cream:#f6f4ef;--white:#fdfcfb;--gold:#b8946a;
+--s:'Pinyon Script','Snell Roundhand',cursive;--t:'Times New Roman',Times,'Cormorant Garamond',serif}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--white);color:var(--ink);font-family:var(--t);overflow-x:hidden}
+main{max-width:480px;margin:0 auto;background:var(--white)}
+section{padding:70px 26px;text-align:center;position:relative}
+.cr{background:var(--cream)}
+.sc{font-family:var(--s);font-size:34px;font-weight:400}
+.cap{font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.big{font-size:44px;margin:8px 0 18px}
+p{line-height:1.6;font-size:15px}
+.rv{opacity:0;transform:translateY(26px);transition:1s ease}.rv.in{opacity:1;transform:none}
+/* hero */
+#hero{height:calc(min(100vw,480px)*5/3 + 56px);padding:0;overflow:hidden;background:var(--white)}
+#hero .txt{position:absolute;inset:0 0 56px;opacity:0;transition:opacity 1.6s 1.2s}
+#hero.open .txt{opacity:1}
+.k{position:absolute;top:0;bottom:56px;width:100%}.k i{display:block!important;background:#6b0f09!important}.k i::after{display:none}.k canvasX{position:absolute;top:0;height:100%;width:110%;will-change:transform}
+.k i{display:none;position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 11px,rgba(238,190,160,.55) 11px 12px,transparent 12px 19px,rgba(238,190,160,.4) 19px 20px,transparent 20px 31px),
+ linear-gradient(90deg,#5d0c07,#7a1710 30%,#640d08 60%,#7d1811)}
+.k i::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 25%,transparent 70%,rgba(0,0,0,.2))}
+#kl{clip-path:polygon(0 0,50% 0,50% 30%,50% 50%,50% 66%,50% 82%,50% 100%,0 100%)}
+#kr{clip-path:polygon(100% 0,50% 0,50% 30%,50% 50%,50% 66%,50% 82%,50% 100%,100% 100%)}
+#snd{position:absolute;bottom:66px;left:50%;transform:translateX(-50%);width:36px;height:36px;border-radius:50%;border:0;background:rgba(40,15,10,.8);color:#fff;cursor:pointer;z-index:5}
+#scr{position:absolute;bottom:8px;width:100%;font-size:10px;letter-spacing:.2em;opacity:0;transition:1s 3s}
+#hero.open #scr{opacity:1}#scr b{display:block;font-weight:400;font-size:18px;animation:bob 1.6s infinite}
+@keyframes bob{50%{transform:translateY(5px)}}
+/* scratch */
+.dates{display:flex;justify-content:space-between;gap:10px;margin:34px 0 26px}
+.d{position:relative;width:84px;height:84px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
+.d canvas{position:absolute;inset:0;border-radius:50%;touch-action:none;cursor:grab;transition:opacity .8s}
+#gm{opacity:0;transition:1s .4s}#gm.in{opacity:1}
+#cf{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
+/* countdown */
+.cd{display:flex;gap:12px;justify-content:center;margin:26px 0 20px}
+.cd div{width:64px;height:64px;border:1px solid var(--ink);border-radius:9px;font-size:24px;display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:22px}
+.cd small{position:absolute;top:70px;font-size:9px;letter-spacing:.15em}
+.addr{font-size:12px;letter-spacing:.18em;color:#8a5a54;margin:8px 0 20px;line-height:1.7}
+/* menu */
+.menu{position:relative;margin:0 auto;width:320px;height:560px}
+.menu svg.f{position:absolute;inset:0}
+.menu .in2{position:absolute;inset:100px 44px 0;font-size:11px}
+.menu h6{font-size:11px;letter-spacing:.18em;font-weight:400;margin:15px 0 5px}.menu em{display:block;font-size:11px;color:#6b4a46}
+.fig{display:block;margin:0 auto}
+.box{border:2px solid var(--ink);padding:18px 14px;font-size:12px;letter-spacing:.06em;line-height:2;margin-top:14px}
+/* form */
+.pill{display:inline-flex;gap:6px;border:1px solid #d9bfb8;background:#f1e3df;color:#7b4f48;border-radius:20px;padding:5px 12px;font-size:11px;margin-bottom:14px}
+.card{background:#fdfcfa;border:1px solid #e4e0d7;border-radius:18px;padding:22px 18px;text-align:left;margin-top:20px}
+.card label{display:block;font-size:11px;letter-spacing:.15em;margin:12px 0 7px}
+.card input,.card textarea,.opt{width:100%;border:1px solid #d6d3c8;border-radius:10px;padding:10px 12px;font:14px var(--t);background:#fff;color:var(--ink);display:block}
+.opt{text-align:center;margin-bottom:8px;cursor:pointer}.opt.on{background:#a67f7c;color:#fff;border-color:#a67f7c}
+.go{width:100%;margin-top:18px;border:0;border-radius:10px;padding:12px;background:#a47e7a;color:#fff;font:15px var(--t);cursor:pointer}
+/* thanks */
+#ty{background:var(--white)}
+.tyc{background:#4d1510;border-radius:26px;padding:20px}
+.tyc>div{background:var(--white);padding:60px 26px;clip-path:var(--zz)}
+</style></head><body><main>
+
+<section id="hero">
+ <div class="txt">
+  <div class="cap" style="position:absolute;top:33%;width:100%;font-size:9px;color:#a98a6c;line-height:1.5">You are cordially invited to<br>celebrate the wedding of</div>
+  <div class="sc" style="position:absolute;top:38.5%;width:100%;font-size:52px;line-height:1;color:#5a3a35">Sam<br><span style="font-size:22px;display:block;margin:4px 0">&amp;</span>Sofia</div>
+  <p class="cap" style="position:absolute;top:79%;left:28%;width:44%;line-height:1.8;font-size:8.5px">We would like to invite you to celebrate with us the most special day of our lives. It would be an honor to have you present at this important moment.</p>
+ </div>
+ <div class="k" id="kl"><i></i></div><div class="k" id="kr"><i></i></div>
+ <button id="snd" aria-label="sound">🔊</button>
+ <div id="scr" class="cap">Scroll<b>↓</b></div>
+</section>
+
+<section class="cr" id="rev">
+ <div class="sc rv">Reveal</div>
+ <div class="cap rv" style="margin-top:10px">Scratch to discover the date</div>
+ <div class="dates rv"><div class="d">10</div><div class="d">Sept</div><div class="d">2027</div></div>
+ <div class="sc" id="gm" style="font-size:28px">We're getting married!</div>
+</section>
+
+<section>
+ <div class="sc rv">Countdown</div>
+ <div class="cd rv" id="cd"></div>
+ <p class="rv" style="font-size:13px;margin-top:-6px">until the big day</p>
+ <div class="cap rv" style="margin-top:70px;line-height:1.8">The celebration will take place<br>at</div>
+ <svg class="fig rv" width="300" height="150" viewBox="0 0 300 150" fill="none" stroke="#6b3b36" stroke-width="1">
+  <path d="M20 130V70h70V50l30-18 30 18v20h40V50l30-18 30 18v20h40v60M10 130h280M20 70h260M50 62v60M240 62v60M120 70v60M180 70v60" />
+  <path d="M30 80h10M30 95h10M30 110h10M60 80h10M60 95h10M60 110h10M130 80h10M130 95h10M150 80h10M150 95h10M200 80h10M230 80h10M270 80h10M200 95h10M230 95h10M130 110h30M190 110h10M135 52h30M105 60h12M185 60h12"/>
+  <ellipse cx="150" cy="140" rx="60" ry="6"/><circle cx="150" cy="134" r="5"/>
+ </svg>
+ <h2 class="rv" style="font-weight:400;font-size:30px;margin:16px 0 8px">Villa Medicea di Artimino</h2>
+ <div class="addr rv">VIA DI PAPA LEONE X, 28<br>ARTIMINO, FLORENCIA</div>
+ <p class="rv" style="font-size:21px">September 10, 2027</p>
+ <div class="sc rv" style="margin-top:28px">Reception to Follow</div>
+</section>
+
+<section class="cr">
+ <div class="menu rv"><svg class="f" id="frame" viewBox="0 0 320 560"></svg>
+  <svg style="position:absolute;left:112px;top:6px" width="96" height="50" viewBox="0 0 96 50" fill="none" stroke="#9c1b1b" stroke-width="2"><path d="M48 28C30 6 6 6 8 22s30 12 40 6c10 6 34 10 40-6S66 6 48 28zM48 28l-12 20M48 28l12 20"/></svg>
+  <div class="in2">
+   <h6>APERITIVO</h6><span>Selección de antipasti toscanos</span><em>Bruschetta, crostini &amp; affettati misti</em>
+   <h6>PRIMO</h6><span>Risotto al tartufo nero di Norcia</span><em>con parmigiano reggiano 24 mesi</em>
+   <h6>SECONDO</h6><span>Filetto di manzo alla griglia</span><em>con salsa al vino rosso e verdure di stagione</em>
+   <h6>DOLCE</h6><span>Torta nuziale con crema di mascarpone</span><em>e frutti di bosco freschi</em>
+   <div class="sc" style="font-size:19px;margin-top:12px">Vini della Tenuta</div>
+   <svg width="190" height="95" viewBox="0 0 190 95" fill="none" stroke="#a02424" stroke-width="1.3" style="margin-top:6px"><path d="M60 8v30M90 2v36M120 8v30M50 40q45-14 90 0M30 52h130M40 52v38M150 52v38M30 70h130M70 20q25-18 50 0"/><circle cx="95" cy="30" r="12"/></svg>
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="sc rv" style="font-family:var(--t);font-size:38px;color:var(--ink)">Dress Code</div>
+ <svg class="fig rv" width="300" height="190" viewBox="0 0 300 190" style="margin:22px auto">
+  <g fill="#222"><circle cx="35" cy="26" r="9"/><path d="M22 40h26l6 60-8 70h-8l-4-50-4 50h-8l-4-70z"/>
+  <circle cx="150" cy="22" r="9"/><path d="M136 36h28l6 64-6 70h-9l-3-50-3 50h-9l-6-70z"/>
+  <circle cx="255" cy="26" r="9"/><path d="M242 40h26l6 60-8 70h-8l-4-50-4 50h-8l-4-70z"/></g>
+  <circle cx="90" cy="30" r="9" fill="#a86a3a"/><path d="M76 42h28l22 128H62z" fill="#8c9a5b"/>
+  <circle cx="200" cy="30" r="9" fill="#b0603a"/><path d="M188 42h24l18 128h-60z" fill="#d44a56"/>
+  <path d="M255 42h28l8 128h-44z" fill="#d6a23a" opacity=".0"/>
+ </svg>
+ <p class="rv">We invite you to dress elegantly and formally to celebrate this special day with us.</p>
+ <h3 class="rv" style="font-weight:400;font-size:26px;margin:34px 0 14px">Formal Attire</h3>
+ <div class="sc rv" style="font-size:24px">Please avoid wearing white</div>
+</section>
+
+<section class="cr">
+ <div class="cap rv">Wedding Registry</div>
+ <svg class="fig rv" width="90" height="80" viewBox="0 0 90 80" fill="none" stroke="#8c1c1c" stroke-width="1.6" style="margin:14px auto 4px"><path d="M8 52q4-22 28-24h26q18 4 22 24l-8 8H16zM26 30l6-14h22l6 14M34 60l-4 14M58 60l4 14M40 16l-4-10M52 16l4-10"/><circle cx="26" cy="56" r="7"/><circle cx="64" cy="56" r="7"/></svg>
+ <h2 class="rv" style="font-weight:400;font-size:40px;margin-bottom:18px">Gifts</h2>
+ <p class="rv">Your presence is the best gift we could receive. However, if you wish to contribute to our new life together, you can do so via bank transfer.</p>
+ <div class="sc rv" style="margin:34px 0 22px">With all our love</div>
+ <div class="cap rv">Bank Details</div>
+ <div class="box rv">ACCOUNT HOLDER: SAM &amp; SOFIA<br>IBAN: ES00 0000 0000 0000 0000 0000<br>REFERENCE: Sam &amp; Sofia Wedding</div>
+</section>
+
+<section>
+ <div class="cap rv">How to get there</div>
+ <h2 class="rv" style="font-weight:400;font-size:42px;margin:6px 0 18px">Transport</h2>
+ <p class="rv">We have organized buses from the center of Florence to the villa so you can enjoy the celebration without worries.</p>
+ <div class="cap rv" style="margin-top:44px">Bus Departure</div>
+ <div class="rv" style="font-size:21px;margin:10px 0;line-height:1.4">Piazza della Signoria<br>16:00h</div>
+ <div class="cap rv" style="margin-top:34px">Return to Florence</div>
+ <div class="rv" style="font-size:21px;margin:10px 0">02:00h</div>
+ <div class="sc rv" style="font-size:25px;margin-top:26px">Please indicate in your RSVP if you need transport</div>
+</section>
+
+<section class="cr">
+ <div class="pill rv">ⓘ This form is fully customizable to your needs</div>
+ <div class="sc rv" style="font-size:36px">Confirm your attendance</div>
+ <div class="card rv">
+  <label>FULL NAME *</label><input placeholder="Your name">
+  <label>EMAIL (OPTIONAL)</label><input placeholder="your@email.com">
+  <label>WILL YOU ATTEND? *</label>
+  <div class="opt">Yes, I'll be there!</div><div class="opt">No, I can't make it</div>
+  <label>MESSAGE FOR THE COUPLE (OPTIONAL)</label><textarea rows="3" placeholder="Write us a few words..."></textarea>
+  <button class="go">✈ Confirm</button>
+ </div>
+</section>
+
+<section id="ty"><div class="tyc rv"><div>
+ <div class="sc" style="font-size:36px;color:#6a5a58">Thank You</div>
+ <p style="margin:18px 0 24px">For joining us on this special day. Your presence is the best gift we could receive.</p>
+ <div class="sc" style="font-size:26px">Sam &amp; Sofia</div></div></div></section>
+</main>
+<canvas id="cf"></canvas>
+
+<script>
+const $=(s,e=document)=>e.querySelector(s),$$=(s,e=document)=>[...e.querySelectorAll(s)];
+// curtain open
+const YS=[0,12,25,38,50,58,65,72,76,80,90,100];
+const K0=YS.map(()=>50),K1=YS.map(y=>50-Math.max(2,25*Math.pow(y<=63?y/63:(100-y)/37,1.3)));
+const K2=[38,35,30,22,12,5,0,3,6,12,25,34],K3=[34,33,31,28,23,15,7,0,3,7,9,10];
+const cr=(a,b,c,d,t)=>.5*(2*b+(-a+c)*t+(2*a-5*b+4*c-d)*t*t+(-a+3*b-3*c+d)*t*t*t);
+const lerp=(A,B,p)=>A.map((v,i)=>v+(B[i]-v)*p);
+function edge(t){const e=.5-Math.cos(Math.PI*t)/2;let k;
+ k=e<.3?lerp(K0,K1,e/.3):e<.62?lerp(K1,K2,(e-.3)/.32):lerp(K2,K3,(e-.62)/.38);
+ const o=[],n=k.length,g=i=>k[Math.min(n-1,Math.max(0,i))];
+ for(let i=0;i<n-1;i++)for(let q=0;q<(i==n-2?9:8);q++){const u=q/8;o.push([Math.max(0,cr(g(i-1),g(i),g(i+1),g(i+2),u)),YS[i]+(YS[i+1]-YS[i])*u])}
+ return[o,e]}
+const N=11,cvs=[];
+function fabric(side){const K=$('#k'+side),c=document.createElement('canvas'),d=Math.min(2,devicePixelRatio||1),W=K.clientWidth,H=K.clientHeight;
+ c.width=W*d;c.height=H*d;c.style.cssText='position:absolute;inset:0;width:100%;height:100%'+(side=='r'?';transform:scaleX(-1)':'');K.appendChild(c);
+ const x=c.getContext('2d');x.scale(d,d);cvs.push({x,W,H})}
+function lines(e){const s=Math.min(1,Math.max(0,(e-.25)/.75)),f=s*s*(3-2*s);
+ cvs.forEach(({x,W,H})=>{x.clearRect(0,0,W,H);x.lineCap='round';
+  for(let i=0;i<=N;i++){const a=i/N*W*.34,kn=i/N*W*.1,b=i/N*W*.14,tc=i/N*W*.5+3;
+   [[0,'rgba(60,0,0,.35)',2.2,2],[1,'rgba(240,200,170,.85)',1.2,0]].forEach(([_,col,lw,off])=>{x.beginPath();x.strokeStyle=col;x.lineWidth=lw;
+    for(let y=0;y<=H;y+=5){const yn=y/H,cl=tc+Math.sin(yn*9+i*1.7)*3+Math.sin(yn*23+i)*1.2;let op;
+     if(yn<.72){const u=yn/.72;op=a+(kn-a)*Math.pow(u,1.15)}else op=kn+(b-kn)*((yn-.72)/.28);
+     const xx=cl+(op-cl)*f+off+Math.sin(yn*11+i*2.1)*2.2*f;x[y?'lineTo':'moveTo'](xx,y)}x.stroke()})}})}
+fabric('l');fabric('r');
+function drawK(t){const[p,e]=edge(t);
+ const L=p.map(([x,y])=>x.toFixed(2)+'% '+y.toFixed(1)+'%').join(','),R=p.map(([x,y])=>(100-x).toFixed(2)+'% '+y.toFixed(1)+'%').join(',');
+ $('#kl').style.clipPath=`polygon(0 0,${L},0 100%)`;$('#kr').style.clipPath=`polygon(100% 0,${R},100% 100%)`;lines(e)}
+drawK(0);
+setTimeout(()=>{$('#hero').classList.add('open');const t0=performance.now();(function f(n){const t=Math.min(1,(n-t0)/3000);drawK(t);t<1&&requestAnimationFrame(f)})(t0)},700);
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.2});
+$$('.rv').forEach(e=>io.observe(e));
+// scratch coins
+let done=0;
+$$('.d').forEach(d=>{const c=document.createElement('canvas'),w=84;c.width=c.height=w*2;c.style.width=c.style.height=w+'px';d.appendChild(c);
+ const x=c.getContext('2d');x.scale(2,2);
+ const g=x.createConicGradient?x.createConicGradient(0,42,42):null;
+ if(g){[0,.12,.25,.37,.5,.62,.75,.87,1].forEach((s,i)=>g.addColorStop(s,i%2?'#e9c374':'#b98a3e'));x.fillStyle=g}else x.fillStyle='#d9a94f';
+ x.fillRect(0,0,w,w);let dn=0,go=0;
+ const sc=e=>{if(!go||dn)return;const r=c.getBoundingClientRect();x.globalCompositeOperation='destination-out';x.beginPath();x.arc(e.clientX-r.left,e.clientY-r.top,13,0,7);x.fill();
+  const p=x.getImageData(0,0,w*2,w*2).data;let n=0;for(let i=3;i<p.length;i+=64)if(!p[i])n++;
+  if(n>p.length/64*.45){dn=1;c.style.opacity=0;if(++done==3)win()}};
+ c.onpointerdown=e=>{go=1;c.setPointerCapture(e.pointerId);sc(e)};c.onpointermove=sc;c.onpointerup=()=>go=0;});
+// confetti
+function win(){$('#gm').classList.add('in');const c=$('#cf'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
+ const cols=['#4a0d0a','#6b1a14','#8a5a58','#3a0a08'];
+ const P=Array.from({length:130},()=>({x:innerWidth/2,y:innerHeight*.45,vx:(Math.random()-.5)*16,vy:-Math.random()*15-3,r:Math.random()*6,w:6+Math.random()*12,h:4+Math.random()*7,k:Math.random()<.35,c:cols[Math.random()*4|0]}));
+ let t=0;(function f(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.vx*=.99;p.r+=.15;x.fillStyle=p.c;x.save();x.translate(p.x,p.y);x.rotate(p.r);
+  p.k?(x.beginPath(),x.arc(0,0,3,0,7),x.fill()):x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()});
+  if(++t<200)requestAnimationFrame(f);else x.clearRect(0,0,c.width,c.height)})()}
+// countdown
+const T=new Date('2027-09-10T16:00:00');
+function tick(){let s=Math.max(0,(T-new Date())/1e3|0);const v=[s/86400|0,s%86400/3600|0,s%3600/60|0,s%60],l=['DAYS','HOURS','MIN','SEC'];
+ $('#cd').innerHTML=v.map((n,i)=>`<div>${n}<small>${l[i]}</small></div>`).join('')}
+tick();setInterval(tick,1e3);
+// wavy ribbon frame
+(function(){const W=320,H=560,m=14,pts=(o)=>{let d='';const seg=(x1,y1,x2,y2)=>{const n=14;for(let i=0;i<=n;i++){const t=i/n,x=x1+(x2-x1)*t,y=y1+(y2-y1)*t,a=Math.sin(t*Math.PI*5+o)*5,nx=y1==y2?0:a,ny=y1==y2?a:0;d+=(d?'L':'M')+(x+nx).toFixed(1)+' '+(y+ny).toFixed(1)}};
+ seg(m+16,m+8,W-m-16,m+8);seg(W-m,m+24,W-m,H-m-16);seg(W-m-16,H-m,m+16,H-m);seg(m,H-m-16,m,m+24);return d+'Z'};
+ $('#frame').innerHTML=`<path d="${pts(0)}" fill="none" stroke="#9c1b1b" stroke-width="2.4"/><path d="${pts(.9)}" fill="none" stroke="#c0393b" stroke-width="1.2"/>`})();
+// zigzag edge for thank-you
+(function(){let p=[],n=9;for(let i=0;i<=n;i++)p.push(`${i/n*100}% ${i%2?0:3}%`);for(let i=0;i<=n;i++)p.push(`${i%2?100:97}% ${i/n*100}%`);
+ for(let i=n;i>=0;i--)p.push(`${i/n*100}% ${i%2?100:97}%`);for(let i=n;i>=0;i--)p.push(`${i%2?0:3}% ${i/n*100}%`);
+ $('#ty').style.setProperty('--zz',`polygon(${p.join(',')})`)})();
+$('#snd').onclick=e=>e.target.textContent=e.target.textContent=='🔊'?'🔇':'🔊';
+</script></body></html>
